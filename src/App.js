@@ -1,5 +1,5 @@
 import "./App.css";
-import { Formik, Field, Form } from "formik";
+import { Formik } from "formik";
 
 function App() {
   return (
@@ -15,39 +15,51 @@ function App() {
           console.log(JSON.stringify(values, null, 2));
         }}
       >
-        <Form>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="firstName">First Name</label>
+        {({ handleSubmit, handleChange }) => (
+          <form onSubmit={handleSubmit}>
+            <div className="row">
+              <div className="col">
+                <label htmlFor="firstName">First Name</label>
+              </div>
+              <div className="col">
+                <input
+                  type={"text"}
+                  name="firstName"
+                  placeholder="First Name"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div className="col">
-              <Field id="firstName" name="firstName" placeholder="Jane" />
+            <div className="row">
+              <div className="col">
+                <label htmlFor="lastName">Last Name</label>
+              </div>
+              <div className="col">
+                <input
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Doe"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="lastName">Last Name</label>
+            <div className="row">
+              <div className="col">
+                <label htmlFor="email">Email</label>
+              </div>
+              <div className="col">
+                <input
+                  id="email"
+                  name="email"
+                  placeholder="jane@acme.com"
+                  type="email"
+                  onChange={handleChange}
+                />
+              </div>
             </div>
-            <div className="col">
-              <Field id="lastName" name="lastName" placeholder="Doe" />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <label htmlFor="email">Email</label>
-            </div>
-            <div className="col">
-              <Field
-                id="email"
-                name="email"
-                placeholder="jane@acme.com"
-                type="email"
-              />
-            </div>
-          </div>
-
-          <button type="submit">Submit</button>
-        </Form>
+            <button type="submit">Submit</button>
+          </form>
+        )}
       </Formik>
     </div>
   );
