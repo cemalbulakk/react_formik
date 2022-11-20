@@ -1,21 +1,18 @@
 import * as yup from "yup";
 
-// const validations = yup.object({
-//   email: string().email().required(),
-//   password: string().min(5).required(),
-//   passwordConfirm: yup
-//     .string()
-//     .oneOf([yup.ref("password")])
-//     .required(),
-// });
-
 const validations = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(5).required(),
+  email: yup
+    .string()
+    .email("Geçerli bir email giriniz.")
+    .required("Zorunlu alan."),
+  password: yup
+    .string()
+    .min(5, "Şifreniz en az 5 karakter olmalıdır.")
+    .required("Zorunlu alan."),
   passwordConfirm: yup
     .string()
-    .oneOf([yup.ref("password")])
-    .required(),
+    .oneOf([yup.ref("password")], "Şifreler uyuşmamaktadır.")
+    .required("Zorunlu alan."),
 });
 
 export default validations;

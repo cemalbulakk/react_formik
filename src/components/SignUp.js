@@ -14,6 +14,8 @@ function SignUp() {
     },
     validationSchema,
   });
+
+  console.log(formik.errors);
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="email">Email Address</label>
@@ -23,7 +25,13 @@ function SignUp() {
         type="email"
         onChange={formik.handleChange}
         value={formik.values.email}
+        onBlur={formik.handleBlur}
       />
+
+      {formik.errors.email && formik.touched.email && (
+        <div className="error">{formik.errors.email}</div>
+      )}
+
       <label htmlFor="password">Password</label>
       <input
         id="password"
@@ -31,7 +39,13 @@ function SignUp() {
         type="password"
         onChange={formik.handleChange}
         value={formik.values.password}
+        onBlur={formik.handleBlur}
       />
+
+      {formik.errors.password && formik.touched.password && (
+        <div className="error">{formik.errors.password}</div>
+      )}
+
       <label htmlFor="passwordConfirm">Password Confirm</label>
       <input
         id="passwordConfirm"
@@ -39,7 +53,11 @@ function SignUp() {
         type="password"
         onChange={formik.handleChange}
         value={formik.values.passwordConfirm}
+        onBlur={formik.handleBlur}
       />
+      {formik.errors.passwordConfirm && formik.touched.passwordConfirm && (
+        <div className="error">{formik.errors.passwordConfirm}</div>
+      )}
       <br />
       <button type="submit">Submit</button>
     </form>
